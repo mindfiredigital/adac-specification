@@ -1,4 +1,4 @@
-name: "\U0001F41B Spec Bug / Inconsistency"
+name: "Spec Bug / Inconsistency"
 description: Report an error in the specification document or JSON Schema
 labels: ["bug", "spec"]
 body:

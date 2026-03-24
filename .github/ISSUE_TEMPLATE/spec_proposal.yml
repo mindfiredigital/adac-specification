@@ -1,4 +1,4 @@
-name: "\U0001F4A1 Spec Proposal"
+name: "Spec Proposal"
 description: Propose a new field, service type, or structural change to the ADAC specification
 labels: ["spec-proposal"]
 body:
