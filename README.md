@@ -1,34 +1,28 @@
 # ADAC (Architecture Diagram as Code)
 
-> **Status:** Release Candidate (Under Community Review)  
-> **Version:** 0.1  
+> **Status:** v0.1.0 Release
+> **License:** Apache 2.0
 
-ADAC (Architecture Diagram as Code) is an open specification for describing cloud infrastructure architectures in YAML/JSON format. Think of it as **"OpenAPI for infrastructure architecture"**.
+ADAC is an open specification for describing cloud infrastructure architectures in YAML/JSON format. Think of it as **"OpenAPI for infrastructure architecture"** — a single versioned file that replaces scattered Lucidcharts, Confluence pages, and stale docs.
 
-## 🎯 Overview
+---
 
-ADAC solves the problem of keeping architecture diagrams and documentation in sync with reality. Instead of manually drawing diagrams in tools like Lucidchart or Visio, you define your architecture in a semantic, version-controlled YAML file.
+## Why ADAC?
 
-### Design Goals
+| Before ADAC                                   | After ADAC                                 |
+| :-------------------------------------------- | :----------------------------------------- |
+| Docs scattered across wikis and drawing tools | **Single source of truth** in Git          |
+| Diagrams stale within weeks                   | **Always current** via version control     |
+| Manual, error-prone cost estimates            | **Built-in cost metadata**                 |
+| Compliance audits take weeks                  | **Compliance-ready** tags on every service |
 
-*   **Semantic Consistency:** Every element represents a functional architectural component rather than just a visual shape.
-*   **Provider Neutrality:** The core schema is designed to support AWS, Azure, GCP, Kubernetes, and on-premise environments. (v0.1 focuses on AWS).
-*   **Auditability:** Native support for security, compliance, and cost metadata.
+---
 
-### Why ADAC?
+## Quick Start
 
-| Before ADAC | After ADAC |
-| :--- | :--- |
-| Docs scattered across wikis and drawing tools | **Single source of truth** in Git |
-| Diagrams stale within weeks | **Always current** via version control |
-| Manual, error-prone cost estimates | **built-in cost transparency** |
-| Compliance audits take weeks | **Compliance ready** tags and metadata |
+### 1. Write your architecture
 
-## 🚀 Quick Start
-
-### 1. Create Your First ADAC File
-
-Create a file named `my-architecture.adac.yaml`:
+Create `my-architecture.adac.yaml`:
 
 ```yaml
 version: "0.1"
@@ -39,65 +33,129 @@ metadata:
   created: "2026-01-08"
   environment: "production"
 
+applications:
+  - id: "web-app"
+    name: "Frontend"
+    type: "frontend"
+    technology: "React 18"
+
 infrastructure:
   clouds:
     - id: "aws-prod"
       provider: "aws"
       region: "us-east-1"
-      
       services:
         - id: "ecs-frontend"
           service: "ecs-fargate"
           name: "Frontend Container"
+          runs: ["web-app"]
           configuration:
             memory_mb: 2048
             instance_count: 2
+          cost:
+            monthly_estimate: 150
+            currency: "USD"
+
+connections:
+  - id: "user-to-ecs"
+    from: "external-users"
+    to: "ecs-frontend"
+    type: "api-call"
+    protocol: "HTTPS"
 ```
 
-### 2. Validate Your ADAC File
+### 2. Validate against the schema
 
-You can validate your content against our JSON schema using any standard JSON Schema validator.
+The schema targets **JSON Schema Draft 2020-12**. Use an ajv-based validator:
 
 ```bash
-# Example using AJV CLI
-npm install -g ajv-cli
-ajv validate -s schema/adac_minimal_schema.json -d my-architecture.adac.yaml
+npm install -g ajv-cli ajv-formats
+ajv validate --spec=draft2020 -s schema/adac_minimal_schema.json -d my-architecture.adac.yaml
 ```
 
-## 📚 Documentation & Resources
+---
 
-*   **[Full Specification (v0.1)](spec/adac-v0.1.md)**: Detailed documentation of the entire ADAC standard, including all supported fields and services.
-*   **[JSON Schema](schema/adac_minimal_schema.json)**: The machine-readable rules that define a valid ADAC file.
-*   **[Examples](examples/)**: Real-world examples found in the `examples` directory:
-    *   [Simple Web App](examples/01-simple-web-app/adac_example_webapp.yaml)
-    *   [Microservices](examples/02-microservices/adac_example_microservices.yaml)
-    *   [Data Pipeline](examples/03-data-pipeline/adac_example_data_pipeline.yaml)
+## Generate Diagrams and More
 
-## 🔧 Supported Services (v0.1)
+> This spec is tool-agnostic. Any tool that implements the ADAC standard can consume your YAML file.
 
-The current version (v0.1) supports **90+ AWS Services**, covering:
-*   **Compute:** EC2, ECS, EKS, Lambda, etc.
-*   **Database:** RDS, DynamoDB, ElastiCache, Redshift.
-*   **Networking:** ALB/NLB, CloudFront, API Gateway, VPC.
-*   **Security:** IAM, KMS, WAF, Security Hub.
-*   **Others:** Storage, Messaging, Monitoring, AI/ML, Analytics.
+**[adac-tools](https://github.com/mindfiredigital/adac-tools)** is the reference implementation — a CLI and library that builds on this spec:
 
-See the [Full Specification](spec/adac-v0.1.md) for the complete list.
+```bash
+npm install -g @mindfiredigital/adac-diagram
 
-## 🛣️ Roadmap
+adac validate my-architecture.adac.yaml          # validate
+adac diagram  my-architecture.adac.yaml -o out.svg  # generate SVG diagram
+adac cost     my-architecture.adac.yaml           # cost breakdown
+```
 
-| Phase | Status | Focus |
-| :--- | :--- | :--- |
-| **Phase 1 (MVP)** | ✅ Complete | JSON Schema v0.1, AWS Support, Examples |
-| **Phase 2** | 🔄 In Progress | interactive web viewer, Cost Analyzer, CLI Tools |
-| **Phase 3** | 📅 Planned | Multi-cloud support (Azure, GCP), Terraform export |
+---
 
-## 🤝 Contributing
+## Documentation
 
-We are currently in the **POC phase** and your feedback is crucial! 
+| Resource                                                        | Description                                            |
+| :-------------------------------------------------------------- | :----------------------------------------------------- |
+| **[Full Specification (v0.1)](spec/adac-v0.1.md)**              | Complete ADAC standard — all fields, enums, and rules  |
+| **[JSON Schema](schema/adac_minimal_schema.json)**              | Machine-readable schema for validation and IDE support |
+| **[Examples](examples/)**                                       | 3 real-world reference architectures                   |
+| **[adac-tools](https://github.com/mindfiredigital/adac-tools)** | CLI, diagram engine, cost analysis, compliance checker |
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
+### Example files
 
-## 📄 License
+| Example                                                                         | Description                              |
+| :------------------------------------------------------------------------------ | :--------------------------------------- |
+| [01 — Simple Web App](examples/01-simple-web-app/adac_example_webapp.yaml)      | 3-tier web app on ECS + RDS + CloudFront |
+| [02 — Microservices](examples/02-microservices/adac_example_microservices.yaml) | EKS microservices with SQS/SNS messaging |
+| [03 — Data Pipeline](examples/03-data-pipeline/adac_example_data_pipeline.yaml) | Kinesis + EMR + Redshift analytics stack |
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+---
+
+## Supported Services (v0.1)
+
+**90+ AWS services** across:
+
+- **Compute:** EC2, ECS Fargate, EKS, Lambda, App Runner, Lightsail
+- **Database:** RDS (Postgres, MySQL, Aurora), DynamoDB, ElastiCache, Redshift, Neptune
+- **Networking:** ALB, NLB, CloudFront, API Gateway (REST + HTTP + WebSocket), Route 53, VPC, Direct Connect
+- **Security:** IAM, KMS, WAF, ACM, Secrets Manager, Security Hub, GuardDuty, Inspector
+- **Storage:** S3, EBS, EFS, FSx
+- **Messaging:** SQS, SNS, EventBridge, Kinesis, MSK (Kafka), MQ
+- **Monitoring:** CloudWatch, X-Ray
+- **AI/ML:** SageMaker, Rekognition, Comprehend, Textract, Bedrock
+- **Analytics:** Athena, Glue, EMR, QuickSight, Data Pipeline
+- **Developer Tools:** CodePipeline, CodeBuild, CodeDeploy, ECR
+
+See the [full specification](spec/adac-v0.1.md) for every supported field and enum.
+
+---
+
+## Design Goals
+
+- **Semantic consistency:** Every element is a real architectural component, not a visual shape
+- **Provider neutrality:** Schema supports AWS, Azure, GCP, Kubernetes, on-premise (v0.1 focuses on AWS)
+- **Auditability:** Native compliance (`PCI-DSS`, `HIPAA`, `SOC2`, `GDPR`) and cost metadata built into the format
+- **Toolability:** JSON Schema–compatible so any editor can provide autocomplete and validation
+
+---
+
+## Roadmap
+
+| Phase       | Version | Status         | Focus                                                        |
+| :---------- | :------ | :------------- | :----------------------------------------------------------- |
+| **Phase 1** | v0.1.0  | ✅ Released    | JSON Schema, 90+ AWS services, 3 examples, CLI tooling       |
+| **Phase 2** | v0.2.0  | 🔄 In Progress | Azure + GCP service definitions, Web UI, IaC exports         |
+| **Phase 3** | v0.3.0  | 📅 Planned     | Multi-cloud connections, VS Code extension, Terraform export |
+
+---
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for how to open issues, propose spec changes, and submit pull requests.
+
+The primary place for spec discussion is **GitHub Issues** in this repo. For tooling bugs or feature requests, open an issue in [adac-tools](https://github.com/mindfiredigital/adac-tools/issues).
+
+---
+
+## License
+
+Apache 2.0 — see [LICENSE](LICENSE).

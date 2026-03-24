@@ -20,7 +20,7 @@ Here are some ways you can contribute to the project:
 4. **Make changes** and **test** to ensure they work as expected.
 5. **Commit** your changes: `git commit -m 'Your descriptive commit message'`.
 6. **Push** your branch to your GitHub repository: `git push origin feature-name`.
-7. Create a **Pull Request (PR)** from your branch to the original repository's `main` or `master` branch.
+7. Create a **Pull Request (PR)** from your branch to the original repository's `main` branch.
 
 ## Pull Request Guidelines
 
@@ -37,6 +37,6 @@ Please ensure your contributions adhere to the project's [Code of Conduct](./COD
 
 If you need further clarification or help, feel free to reach out by creating an issue or directly contacting the maintainers.
 
-Thank you for your interest in contributing to [Project Name]! We appreciate your efforts in making this project better.
+Thank you for your interest in contributing to ADAC Specification! We appreciate your efforts in making this project better.
 
 Happy contributing!

@@ -1,0 +1,24 @@
+name: "General Feedback"
+description: Share general feedback, questions, or discussion topics
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For spec bugs use the **Bug Report** template. For additions use the **Spec Proposal** template.
+        This template is for general questions, feedback, and discussion.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to do, or what are you reacting to?
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback / Question
+    validations:
+      required: true

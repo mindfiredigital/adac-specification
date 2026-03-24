@@ -194,7 +194,7 @@
         "vpc_id": {
           "type": "string",
           "description": "VPC identifier",
-          "pattern": "^vpc-[a-z0-9]+$"
+          "pattern": "^vpc-[a-z0-9-]+$"
         },
         "tier": {
           "type": "string",
@@ -427,7 +427,7 @@
           "description": "Security group IDs",
           "items": {
             "type": "string",
-            "pattern": "^sg-[a-z0-9]+$"
+            "pattern": "^sg-[a-z0-9-]+$"
           }
         },
         "subnets": {
@@ -435,7 +435,7 @@
           "description": "Subnet IDs",
           "items": {
             "type": "string",
-            "pattern": "^subnet-[a-z0-9]+$"
+            "pattern": "^subnet-[a-z0-9-]+$"
           }
         },
         "iam_role": {
@@ -475,6 +475,14 @@
                 }
               }
             }
+          }
+        },
+        "compliance": {
+          "type": "array",
+          "description": "Compliance frameworks this service must adhere to",
+          "items": {
+            "type": "string",
+            "enum": ["PCI-DSS", "HIPAA", "GDPR", "SOC2", "ISO27001", "FedRAMP"]
           }
         }
       }

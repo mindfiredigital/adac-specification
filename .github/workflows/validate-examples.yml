@@ -1,0 +1,64 @@
+name: Validate Examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate example ADAC files against schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install validator dependencies
+        run: npm ci
+
+      - name: Validate all example YAML files
+        run: |
+          node -e "
+          const Ajv = require('ajv/dist/2020');
+          const addFormats = require('ajv-formats');
+          const yaml = require('js-yaml');
+          const fs = require('fs');
+          const { execSync } = require('child_process');
+
+          const schema = JSON.parse(fs.readFileSync('schema/adac_minimal_schema.json', 'utf8'));
+          const ajv = new Ajv({ allErrors: true });
+          addFormats(ajv);
+          const validate = ajv.compile(schema);
+
+          const files = execSync('find examples -name \"*.yaml\" -o -name \"*.yml\"')
+            .toString().trim().split('\n').filter(Boolean);
+
+          if (files.length === 0) {
+            console.error('No example files found under examples/');
+            process.exit(1);
+          }
+
+          let failed = 0;
+          for (const file of files) {
+            const data = yaml.load(fs.readFileSync(file, 'utf8'));
+            const valid = validate(data);
+            if (valid) {
+              console.log('  ✅', file);
+            } else {
+              console.error('  ❌', file);
+              validate.errors.forEach(e => console.error('    ', e.instancePath, e.message));
+              failed++;
+            }
+          }
+
+          if (failed > 0) {
+            console.error(failed + ' file(s) failed validation');
+            process.exit(1);
+          }
+          console.log('All', files.length, 'example file(s) are valid.');
+          "
