@@ -1,0 +1,40 @@
+name: "\U0001F41B Spec Bug / Inconsistency"
+description: Report an error in the specification document or JSON Schema
+labels: ["bug", "spec"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a spec issue. Please fill in as much detail as possible.
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Where is the problem?
+      description: Section name, field name, or line number in spec/adac-v0.1.md or schema/adac_minimal_schema.json
+      placeholder: "e.g. spec/adac-v0.1.md — Connection Object, field `type`"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What is wrong?
+      description: Describe the inconsistency, error, or missing rule
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it say / do instead?
+      description: Your suggested correction
+    validations:
+      required: true
+
+  - type: textarea
+    id: yaml
+    attributes:
+      label: Example ADAC YAML (if applicable)
+      description: A minimal YAML that demonstrates the issue
+      render: yaml

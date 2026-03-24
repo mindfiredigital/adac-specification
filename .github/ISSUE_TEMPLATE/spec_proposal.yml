@@ -1,0 +1,63 @@
+name: "\U0001F4A1 Spec Proposal"
+description: Propose a new field, service type, or structural change to the ADAC specification
+labels: ["spec-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Spec proposals need community discussion before merging. Please describe the problem first, then your solution.
+        Discussions are open for a minimum of 7 days per GOVERNANCE.md.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Gap
+      description: What can't you express in the current ADAC spec?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of change
+      options:
+        - New field (optional)
+        - New field (required)
+        - New service type
+        - New connection type
+        - New cloud provider
+        - Breaking change to existing field
+        - New top-level key
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed YAML structure
+      description: Show what the new or changed YAML would look like
+      render: yaml
+    validations:
+      required: true
+
+  - type: textarea
+    id: schema
+    attributes:
+      label: Proposed JSON Schema addition (optional)
+      description: How this would look in schema/adac_minimal_schema.json
+      render: json
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this needed? Which real-world scenarios does it enable?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: Breaking change?
+      options:
+        - label: This change would require a new spec version (v0.2, etc.)
