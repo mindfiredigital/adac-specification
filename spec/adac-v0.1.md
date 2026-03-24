@@ -542,7 +542,7 @@ Your feedback shapes the spec. The best contributions at this stage are:
 1. **Try the spec** — document a real architecture you work with
 2. **Report gaps** — what services, fields, or connection types are missing?
 3. **Open a spec proposal** — use the `spec-proposal` issue label
-4. **Build tools** — parsers, exporters, exporters, IDE plugins
+4. **Build tools** — parsers, exporters, IDE plugins
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full process.
 
