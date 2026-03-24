@@ -14,7 +14,7 @@ The ADAC Specification is an open standard maintained under the `mindfiredigital
 | **Contributor**      | Submit PRs, open issues, participate in spec discussions        |
 | **Community member** | Open discussions, provide feedback, report issues               |
 
-Current maintainers are listed in the repository's [CODEOWNERS](.github/CODEOWNERS) file (to be added).
+Current maintainers are documented in `.github/CODEOWNERS` (to be added before v0.1.0 tag).
 
 ---
 

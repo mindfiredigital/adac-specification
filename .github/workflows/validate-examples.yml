@@ -19,7 +19,7 @@ jobs:
           node-version: "20"
 
       - name: Install validator dependencies
-        run: npm install ajv ajv-formats js-yaml
+        run: npm ci
 
       - name: Validate all example YAML files
         run: |
@@ -37,6 +37,11 @@ jobs:
 
           const files = execSync('find examples -name \"*.yaml\" -o -name \"*.yml\"')
             .toString().trim().split('\n').filter(Boolean);
+
+          if (files.length === 0) {
+            console.error('No example files found under examples/');
+            process.exit(1);
+          }
 
           let failed = 0;
           for (const file of files) {

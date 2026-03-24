@@ -66,11 +66,11 @@ connections:
 
 ### 2. Validate against the schema
 
-ADAC files are validated using the standard JSON Schema in this repository. Use any JSON Schema v7-compatible validator:
+The schema targets **JSON Schema Draft 2020-12**. Use an ajv-based validator:
 
 ```bash
-npm install -g ajv-cli
-ajv validate -s schema/adac_minimal_schema.json -d my-architecture.adac.yaml
+npm install -g ajv-cli ajv-formats
+ajv validate --spec=draft2020 -s schema/adac_minimal_schema.json -d my-architecture.adac.yaml
 ```
 
 ---
