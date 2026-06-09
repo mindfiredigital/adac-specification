@@ -25,6 +25,17 @@ const config: Config = {
   projectName: 'adac-specification', // Usually your repo name.
 
   onBrokenLinks: 'throw',
+  markdown: {
+    format: 'mdx',
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -41,6 +52,8 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           path: '../docs',
+          editUrl: undefined,
+          sidebarCollapsed: true,
         },
         blog: false,
         theme: {
@@ -52,6 +65,16 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/social-card.jpg',
+    metadata: [
+      {
+        name: 'description',
+        content: 'ADAC — Architecture Diagram as Code. An open specification for describing cloud infrastructure architectures in YAML/JSON format.',
+      },
+      {
+        name: 'keywords',
+        content: 'adac, architecture, diagram, as code, infrastructure, yaml, json, specification, cloud, aws, azure, gcp, mindfire, mindfiredigital',
+      },
+    ],
     colorMode: {
       respectPrefersColorScheme: true,
     },
