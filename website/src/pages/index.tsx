@@ -10,10 +10,10 @@ function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
-            The standard for <span className="text-red-600 dark:text-red-500">AI-driven</span> agents
+            Architecture Diagram <span className="text-red-600 dark:text-red-500">as Code</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            ADAC provides a unified specification for building, connecting, and orchestrating intelligent agents. Start integrating in minutes.
+            ADAC is an open specification for describing cloud infrastructure architectures in YAML/JSON format. Think of it as OpenAPI for infrastructure.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link
@@ -31,7 +31,7 @@ function HeroSection() {
           {/* Code Snippet block */}
           <div className="max-w-2xl mx-auto bg-gray-50 dark:bg-black rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm relative group text-left flex items-center justify-between">
              <code className="text-gray-800 dark:text-gray-300 font-mono text-sm md:text-base">
-               npm install @mindfiredigital/adac-tools
+               npm install -g adac-validator
              </code>
              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors" aria-label="Copy code">
                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -62,17 +62,17 @@ function FeaturesSection() {
   const features = [
     {
       title: 'Easy to Implement',
-      description: 'ADAC is designed from the ground up to be easily installed and used to get your agents up and running quickly without friction.',
+      description: 'ADAC is designed from the ground up to be a single source of truth for your architecture. Generate visuals straight from code.',
       emoji: '⚡'
     },
     {
       title: 'Focus on Logic',
-      description: 'ADAC lets you focus on your agent\'s core logic, and we\'ll do the chores. Rely on the standard schemas for data passing.',
+      description: 'ADAC lets you focus on defining your infrastructure logically, and we\'ll do the chores. Rely on the standard schemas for cost tracking and validation.',
       emoji: '🎯'
     },
     {
       title: 'Powered by JSON',
-      description: 'Extend or customize your agent interactions by reusing strict JSON Schema validation. Compatible across multiple languages.',
+      description: 'Extend or customize your architecture diagrams by reusing strict JSON Schema validation. Compatible across multiple cloud providers.',
       emoji: '🧩'
     }
   ];
@@ -81,7 +81,7 @@ function FeaturesSection() {
     <section className="py-24 bg-gray-50 dark:bg-black">
       <div className="container mx-auto px-4 text-center max-w-6xl">
         <h2 className="text-sm font-bold tracking-widest text-red-600 dark:text-red-500 uppercase mb-4">Why Developers Love ADAC</h2>
-        <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-16">Build agents without the headache.</h3>
+        <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-16">Document architectures without the headache.</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((props, idx) => (
@@ -100,7 +100,7 @@ function CtaSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500/10 dark:bg-red-500/20 rounded-full blur-[100px] pointer-events-none"></div>
       
       <div className="container mx-auto px-4 text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">Ready to simplify your agent workflow?</h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">Ready to simplify your architecture workflow?</h2>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
           Join the ecosystem and start building tools that conform to the ADAC Specification.
         </p>
@@ -119,7 +119,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="The standard specification for AI-driven agents.">
+      description="The standard specification for Architecture Diagram as Code.">
       <main className="w-full">
         <HeroSection />
         <FeaturesSection />
