@@ -14,8 +14,7 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://lakinmindfire.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -56,8 +55,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -103,7 +101,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} ADAC Specification. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} ADAC Specification.`,
     },
     prism: {
       theme: prismThemes.github,
