@@ -64,6 +64,8 @@ const config: Config = {
       logo: {
         alt: 'ADAC Logo',
         src: 'img/logo.svg',
+        width: 32,
+        height: 32,
       },
       items: [
         {
