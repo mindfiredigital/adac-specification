@@ -41,10 +41,6 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           path: '../docs',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/lakinmindfire/adac-specification/tree/main/website/',
         },
         blog: false,
         theme: {
