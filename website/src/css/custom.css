@@ -126,3 +126,9 @@
   --info: #22d3ee;
   --info-foreground: #ffffff;
 }
+
+/* Ensure global footer blends with the page background */
+.footer {
+  background-color: transparent !important;
+  border-top: none !important;
+}

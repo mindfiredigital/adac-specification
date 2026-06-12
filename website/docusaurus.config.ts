@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'ADAC Specification',
   tagline: 'Specification for ADAC Tools',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -68,7 +68,7 @@ const config: Config = {
     metadata: [
       {
         name: 'description',
-        content: 'ADAC — Architecture Diagram as Code. An open specification for describing cloud infrastructure architectures in YAML/JSON format.',
+        content: 'ADAC — Architecture Diagram as Code. An open specification for describing cloud infrastructure architectures in YAML format.',
       },
       {
         name: 'keywords',
@@ -76,13 +76,15 @@ const config: Config = {
       },
     ],
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'ADAC Specification',
       logo: {
         alt: 'ADAC Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
         width: 32,
         height: 32,
       },
@@ -101,28 +103,8 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Overview',
-              to: '/docs/',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/lakinmindfire/adac-specification',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} ADAC Specification.`,
+      style: 'light',
+      copyright: `© 2026 Mindfire FOSS`,
     },
     prism: {
       theme: prismThemes.github,

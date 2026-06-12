@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card';
 import { ShineBorder } from '../components/ui/ShineBorder';
-import { ArrowRight, Copy, Check, Zap, Target, Puzzle, FileCode2, ShieldCheck, Cloud } from 'lucide-react';
+import { ArrowRight, Zap, Target, Puzzle, FileCode2, ShieldCheck, Cloud } from 'lucide-react';
 
 /* ─── Standard Github SVG Icon ──────────────────────────────── */
 function GithubIcon({ size = 18 }: { size?: number }) {
@@ -53,14 +53,6 @@ function SectionCapsule({ text }: { text: string }) {
 
 /* ─── Hero Section ──────────────────────────────────────────── */
 function HeroSection() {
-  const [copied, setCopied] = useState(false);
-  const installCmd = 'npm install @mindfiredigital/adac-tools';
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(installCmd);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <section aria-label="Hero" className="relative overflow-hidden">
@@ -87,7 +79,7 @@ function HeroSection() {
                 }}
               >
                 ADAC is an open specification for describing cloud infrastructure
-                architectures in YAML/JSON format. Think of it as{' '}
+                architectures in YAML format. Think of it as{' '}
                 <strong>OpenAPI for infrastructure</strong>.
               </p>
             </motion.div>
@@ -126,36 +118,6 @@ function HeroSection() {
                 </Link>
               </Button>
             </motion.div>
-
-            {/* Code Snippet */}
-            <motion.div
-              className="max-w-xl mx-auto rounded-2xl p-4 sm:p-5 border shadow-sm relative group text-left flex items-center justify-between"
-              style={{
-                background: 'var(--card)',
-                borderColor: 'var(--border)',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-            >
-              <div className="flex items-center gap-3">
-                <FileCode2 size={18} style={{ color: 'var(--muted-foreground)' }} />
-                <code
-                  className="font-mono text-sm sm:text-base"
-                  style={{ color: 'var(--foreground)' }}
-                >
-                  {installCmd}
-                </code>
-              </div>
-              <button
-                onClick={handleCopy}
-                className="transition-colors cursor-pointer"
-                style={{ color: copied ? 'var(--success)' : 'var(--muted-foreground)' }}
-                aria-label="Copy command"
-              >
-                {copied ? <Check size={18} /> : <Copy size={18} />}
-              </button>
-            </motion.div>
           </div>
         </div>
       </header>
@@ -169,13 +131,13 @@ const features = [
     icon: <Zap size={24} style={{ color: 'hsl(var(--primary))' }} />,
     title: 'Single Source of Truth',
     description:
-      'Define your architecture once in YAML/JSON and generate diagrams, documentation, and validation from a single file.',
+      'Define your architecture once in YAML and generate diagrams, documentation, and validation from a single file.',
   },
   {
     icon: <ShieldCheck size={24} style={{ color: 'hsl(var(--primary))' }} />,
     title: 'Built-in Validation',
     description:
-      'Strict JSON Schema validation catches errors early. Track costs, enforce SLAs, and audit compliance natively.',
+      'Strict schema validation catches errors early. Track costs, enforce SLAs, and audit compliance natively.',
   },
   {
     icon: <Cloud size={24} style={{ color: 'hsl(var(--primary))' }} />,
@@ -389,19 +351,7 @@ function HomepageFooter() {
           color: 'var(--muted-foreground)',
         }}
       >
-        <a
-          href="https://www.mindfiredigital.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            color: 'hsl(var(--primary))',
-            textDecoration: 'none',
-            fontWeight: 600,
-          }}
-        >
-          Mindfire Digital
-        </a>
-        FOSS - 2026
+        © 2026 Mindfire FOSS
       </div>
     </footer>
   );
@@ -414,7 +364,7 @@ export default function Home(): JSX.Element {
     <Layout
       noFooter
       title="Home"
-      description="ADAC — an open specification for describing cloud infrastructure architectures in YAML/JSON format."
+      description="ADAC — an open specification for describing cloud infrastructure architectures in YAML format."
     >
       <div style={{ position: 'relative', zIndex: 1 }}>
         <main className="w-full">
