@@ -14,14 +14,14 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  url: 'https://lakinmindfire.github.io',
+  url: 'https://mindfiredigital.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/adac-specification/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'lakinmindfire', // Usually your GitHub org/user name.
+  organizationName: 'mindfiredigital', // Usually your GitHub org/user name.
   projectName: 'adac-specification', // Usually your repo name.
 
   onBrokenLinks: 'throw',
