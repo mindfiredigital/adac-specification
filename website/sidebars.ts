@@ -19,6 +19,7 @@ const sidebars: SidebarsConfig = {
         'core-concepts/applications',
         'core-concepts/infrastructure',
         'core-concepts/connections',
+        'core-concepts/declarative-layout',
         'core-concepts/cost-tracking',
         'core-concepts/governance',
       ],

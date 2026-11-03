@@ -45,6 +45,7 @@ An ADAC file **MUST** be a valid YAML 1.2 or JSON document. The root level **MUS
 | `connections` | `array` | **OPTIONAL** | Definitions of traffic flow and dependencies. |
 | `cost` | `object` | **OPTIONAL** | Cost tracking summary. |
 | `governance` | `object` | **OPTIONAL** | Compliance, SLA, and security guardrails. |
+| `layoutOptions` | `object` | **OPTIONAL** | Global diagram layout and styling defaults. See [Declarative Layout & Styling](../core-concepts/declarative-layout). |
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -266,6 +267,7 @@ Services represent individual cloud resources (like an EC2 instance or RDS datab
 | `tags` | `object` | **OPTIONAL** | Key-value tags |
 | `cost` | `object` | **OPTIONAL** | Cost breakdown |
 | `monitoring` | `object` | **OPTIONAL** | Monitoring setup details |
+| `visual` | `object` | **OPTIONAL** | Diagram hints: `layout` (how children are arranged) and `style`. See [Declarative Layout & Styling](../core-concepts/declarative-layout) |
 
 :::tip Service List
 For a complete list of supported cloud services, see [Supported Clouds](./supported-clouds/aws).
