@@ -40,6 +40,8 @@ graph LR
 | `requests_per_second` | `number` | **OPTIONAL** | Expected RPS |
 | `security` | `object` | **OPTIONAL** | Security and TLS configuration |
 | `compliance` | `array` | **OPTIONAL** | List of compliance frameworks (e.g. `PCI-DSS`) |
+| `bidirectional` | `boolean` | **OPTIONAL** | Draw arrowheads at both ends of the connection in diagrams |
+| `layout` | `object` | **OPTIONAL** | Diagram hints: `fromSide`, `toSide` and `routing`. See [Declarative Layout & Styling](./declarative-layout#connection-layout-connectionslayout) |
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
